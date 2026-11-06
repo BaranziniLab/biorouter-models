@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "eval-primock57-subset",
+  "kind": "eval",
+  "tag": "eval-primock57-subset-r1",
+  "title": "PriMock57 dictation evaluation subset, revision 1",
+  "description": "60 utterances that name 26 drugs (85 occurrences) and 16 spans with no clinician speech, cut from PriMock57 and stored as 16 kHz mono FLAC with their transcripts. Biorouter's Tier 1 accuracy test reads it.",
+  "file": "primock57-subset-r1.tar",
+  "bytes": 7567360,
+  "sha256": "2776a659f659181f9a4aa67c98d47bf531ad0c904623f9e77d075a714af599e1",
+  "format": "POSIX tar (ustar) of 16 kHz mono 16 bit FLAC files, manifest.jsonl, terms.json, ATTRIBUTION.md and the license text",
+  "check_ggml_magic": false,
+  "source": {
+    "repository": "https://github.com/babylonhealth/primock57",
+    "commit": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5"
+  },
+  "build": {
+    "script": "scripts/build-eval-primock57.py",
+    "selection": "eval/primock57-subset/selection.json",
+    "flac": "the flac package of the ubuntu-24.04 runner; the archive's SHA-256 pin holds only for the same flac version"
+  },
+  "derived_from": {
+    "original": "PriMock57 channel recordings (16 kHz mono 16 bit WAV) and their TextGrid transcripts",
+    "conversion": "cut at TextGrid intervals, then FLAC encoded with flac --best --no-padding --no-seektable"
+  },
+  "license": {
+    "spdx": "CC-BY-4.0",
+    "holders": ["Babylon Health (PriMock57: Papadopoulos Korfiatis, Moramarco, Sarac and Savkov, 2022)"],
+    "files": ["LICENSE-primock57.md"]
+  },
+  "selection_notes": [
+    "Source: PriMock57 at commit cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5, the commit the 2026-11-04 research run read.",
+    "Speech: one TextGrid interval each, 2 to 25 s, no <UNSURE> or <UNIN/> tag, naming at least one of the 26 drugs in terms.json. All 44 clinician channel utterances that pass this filter, and 16 of the 35 patient channel utterances that pass it, chosen by hand in the research run to favour rarer drugs.",
+    "Each utterance runs from its interval's start minus 0.25 s to its end plus 0.25 s.",
+    "Gaps: empty clinician intervals of at least 3.5 s, cut from 0.3 s inside the interval, at most 8 s. 10 room tone spans (both channels silent) and 6 other party spans (only the patient speaks), drawn by the research run with Python's random.seed(7).",
+    "Both hand choices are pinned by list in eval/primock57-subset/selection.json, with the SHA-256 of every TextGrid read and of every clip's WAV as the research run recorded it. The builder refuses any difference.",
+    "Totals: 60 utterances (44 clinician, 16 patient), 420.6 s; 85 occurrences of 26 drugs; 16 gaps, 80.0 s."
+  ]
+}
