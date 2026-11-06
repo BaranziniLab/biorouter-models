@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "whisper-small.en-q8_0",
+  "kind": "model",
+  "tag": "stt-whisper-small.en-q8_0-r1",
+  "title": "Whisper small.en, q8_0 (ggml), revision 1",
+  "file": "ggml-small.en-q8_0.bin",
+  "bytes": 264477561,
+  "sha256": "67a179f608ea6114bd3fdb9060e762b588a3fb3bd00c4387971be4d177958067",
+  "sha1": "9d75ff4ccfa0a8217870d7405cf8cef0a5579852",
+  "format": "ggml legacy (magic 0x67676d6c), q8_0",
+  "check_ggml_magic": true,
+  "source": {
+    "repository": "https://huggingface.co/ggerganov/whisper.cpp",
+    "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+    "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-small.en-q8_0.bin",
+    "hf_lfs_sha256": "67a179f608ea6114bd3fdb9060e762b588a3fb3bd00c4387971be4d177958067",
+    "upstream_published_sha1": "9d75ff4ccfa0a8217870d7405cf8cef0a5579852",
+    "sha1_published_at": [
+      "https://huggingface.co/ggerganov/whisper.cpp/blob/5359861c739e955e79d9a303bcbc70fb988958b1/README.md"
+    ]
+  },
+  "derived_from": {
+    "original": "OpenAI small.en checkpoint",
+    "conversion": "upstream convert script, then quantize q8_0"
+  },
+  "license": {
+    "spdx": "MIT",
+    "holders": ["OpenAI (2022)", "The ggml authors"],
+    "files": ["LICENSE-openai-whisper.txt", "LICENSE-whisper.cpp.txt"]
+  },
+  "languages": "English only",
+  "notice": {
+    "weights": "OpenAI trained Whisper small.en and released its weights under the MIT License (Copyright (c) 2022 OpenAI). See LICENSE-openai-whisper.txt.",
+    "conversion": "The whisper.cpp project (the ggml authors) converted the checkpoint to the ggml format, quantized it to q8_0 and published the file in the Hugging Face repository ggerganov/whisper.cpp. whisper.cpp is under the MIT License (Copyright (c) 2023-2026 The ggml authors). See LICENSE-whisper.cpp.txt.",
+    "hosting": "The Baranzini Lab at UCSF hosts a byte identical copy of that file for Biorouter. The lab did not train, convert or change it."
+  }
+}

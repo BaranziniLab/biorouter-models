@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "whisper-large-v3-turbo-q5_0",
+  "kind": "model",
+  "tag": "stt-whisper-large-v3-turbo-q5_0-r1",
+  "title": "Whisper large-v3-turbo, q5_0 (ggml), revision 1",
+  "file": "ggml-large-v3-turbo-q5_0.bin",
+  "bytes": 574041195,
+  "sha256": "394221709cd5ad1f40c46e6031ca61bce88931e6e088c188294c6d5a55ffa7e2",
+  "sha1": "e050f7970618a659205450ad97eb95a18d69c9ee",
+  "format": "ggml legacy (magic 0x67676d6c), q5_0",
+  "check_ggml_magic": true,
+  "source": {
+    "repository": "https://huggingface.co/ggerganov/whisper.cpp",
+    "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+    "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-large-v3-turbo-q5_0.bin",
+    "hf_lfs_sha256": "394221709cd5ad1f40c46e6031ca61bce88931e6e088c188294c6d5a55ffa7e2",
+    "upstream_published_sha1": "e050f7970618a659205450ad97eb95a18d69c9ee",
+    "sha1_published_at": [
+      "https://huggingface.co/ggerganov/whisper.cpp/blob/5359861c739e955e79d9a303bcbc70fb988958b1/README.md",
+      "https://github.com/ggml-org/whisper.cpp/blob/b1535f5fb163f4443804888f7be980621226cb15/models/README.md"
+    ]
+  },
+  "derived_from": {
+    "original": "OpenAI large-v3-turbo checkpoint",
+    "conversion": "upstream convert script, then quantize q5_0"
+  },
+  "license": {
+    "spdx": "MIT",
+    "holders": ["OpenAI (2022)", "The ggml authors"],
+    "files": ["LICENSE-openai-whisper.txt", "LICENSE-whisper.cpp.txt"]
+  },
+  "languages": "multilingual",
+  "notice": {
+    "weights": "OpenAI trained Whisper large-v3-turbo and released its weights under the MIT License (Copyright (c) 2022 OpenAI). See LICENSE-openai-whisper.txt.",
+    "conversion": "The whisper.cpp project (the ggml authors) converted the checkpoint to the ggml format, quantized it to q5_0 and published the file in the Hugging Face repository ggerganov/whisper.cpp. whisper.cpp is under the MIT License (Copyright (c) 2023-2026 The ggml authors). See LICENSE-whisper.cpp.txt.",
+    "hosting": "The Baranzini Lab at UCSF hosts a byte identical copy of that file for Biorouter. The lab did not train, convert or change it."
+  }
+}
