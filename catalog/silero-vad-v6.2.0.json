@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "id": "silero-vad-v6.2.0",
+  "kind": "model",
+  "tag": "stt-silero-vad-v6.2.0-r1",
+  "title": "Silero VAD v6.2.0 (ggml), revision 1",
+  "file": "ggml-silero-v6.2.0.bin",
+  "bytes": 885098,
+  "sha256": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987",
+  "sha1": "470e5d9d094ddba2f0a512cecc3732a252188abd",
+  "format": "ggml legacy (magic 0x67676d6c), Silero VAD v6.2.0",
+  "check_ggml_magic": true,
+  "source": {
+    "repository": "https://huggingface.co/ggml-org/whisper-vad",
+    "revision": "9ffd54a1e1ee413ddf265af9913beaf518d1639b",
+    "url": "https://huggingface.co/ggml-org/whisper-vad/resolve/9ffd54a1e1ee413ddf265af9913beaf518d1639b/ggml-silero-v6.2.0.bin",
+    "hf_lfs_sha256": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987",
+    "upstream_published_sha1": null,
+    "sha1_published_at": [],
+    "sha1_note": "Upstream publishes no SHA-1 for this file. The SHA-1 above was computed on 2026-11-05 from the file whose SHA-256 matches the Hugging Face LFS record."
+  },
+  "derived_from": {
+    "original": "Silero VAD v6.2.0",
+    "conversion": "whisper.cpp's Silero VAD conversion script to ggml"
+  },
+  "license": {
+    "spdx": "MIT",
+    "holders": ["Silero Team"],
+    "files": ["LICENSE-silero-vad.txt"]
+  },
+  "languages": "not applicable",
+  "notice": {
+    "weights": "The Silero Team trained Silero VAD v6.2.0 and released it under the MIT License (Copyright (c) 2020-present Silero Team). See LICENSE-silero-vad.txt.",
+    "conversion": "The whisper.cpp project converted the model to the ggml format and published the file in the Hugging Face repository ggml-org/whisper-vad, whose model card declares the MIT License.",
+    "hosting": "The Baranzini Lab at UCSF hosts a byte identical copy of that file for Biorouter. The lab did not train, convert or change it."
+  }
+}
