@@ -1,0 +1,680 @@
+{
+  "name": "primock57-subset",
+  "revision": 1,
+  "source": {
+    "repository": "https://github.com/babylonhealth/primock57",
+    "commit": "cd2ac707ad03cb4d2531f4ec6b90c659bf4357c5",
+    "textgrid_url": "https://raw.githubusercontent.com/babylonhealth/primock57/{commit}/transcripts/{file}.TextGrid",
+    "audio_url": "https://media.githubusercontent.com/media/babylonhealth/primock57/{commit}/audio/{file}.wav"
+  },
+  "rules": {
+    "speech": "An utterance is one non empty TextGrid interval of one channel, 2 to 25 s long, with no <UNSURE> or <UNIN/> tag (no '<' at all), whose text contains at least one of the terms below (whole word, any case). All 44 doctor channel utterances that pass this filter are included. The 16 patient channel utterances were chosen by hand from the 35 that pass it, favouring rarer drugs; that choice is pinned here by list, not re-derived. Each clip runs from the interval's xmin minus 0.25 s to its xmax plus 0.25 s, at 16 kHz sample indices int((xmin - 0.25) * 16000) to int((xmax + 0.25) * 16000).",
+    "gaps": "A gap is an empty interval of the doctor channel at least 3.5 s long, cut from xmin + 0.3 s to min(xmax - 0.3 s, xmin + 0.3 s + 8 s) with no padding. room_tone: the patient channel has no non empty interval overlapping the cut. other_party: it has one. The research run shuffled each kind with Python's random.seed(7) and kept the first 10 room_tone and the first 6 other_party gaps; that choice is pinned here by list.",
+    "pad_seconds": 0.25,
+    "gap_inset_seconds": 0.3,
+    "gap_max_seconds": 8.0,
+    "min_seconds": 2.0,
+    "max_seconds": 25.0
+  },
+  "terms": [
+    "paracetamol",
+    "ibuprofen",
+    "aspirin",
+    "Ventolin",
+    "Clenil",
+    "Implanon",
+    "clindamycin",
+    "salbutamol",
+    "naproxen",
+    "furosemide",
+    "thyroxine",
+    "hydrocortisone",
+    "codeine",
+    "sertraline",
+    "loratadine",
+    "Piriton",
+    "fexofenadine",
+    "nitrofurantoin",
+    "trimethoprim",
+    "metformin",
+    "methotrexate",
+    "EpiPen",
+    "lisinopril",
+    "Modulite",
+    "Cetraben",
+    "Lemsip"
+  ],
+  "brands": [
+    "Ventolin",
+    "Clenil",
+    "Implanon",
+    "Piriton",
+    "EpiPen",
+    "Modulite",
+    "Cetraben",
+    "Lemsip"
+  ],
+  "expect": {
+    "utterances": 60,
+    "doctor": 44,
+    "patient": 16,
+    "term_occurrences": 85,
+    "distinct_terms": 26,
+    "gaps": 16,
+    "room_tone": 10,
+    "other_party": 6
+  },
+  "textgrid_sha256": {
+    "day1_consultation02_doctor": "4a33e030a4670936754821469855e63cb3263b1575da098cacd1158b48684277",
+    "day1_consultation02_patient": "61ae00734844852f9fd70df574b02aa79b3da4b654464bd0d70191266a5f78fa",
+    "day1_consultation03_doctor": "a4a10a7817ea6ff09baa7c5dcf582008d4d67d82154492622e3ba39af7ef8589",
+    "day1_consultation04_doctor": "78151a98fa5ffda75ecee3f7f3663f2ae0a38bf8ed5e0fbfa4d04a0545624fea",
+    "day1_consultation04_patient": "012ba2cc6ed1494913037fafc7f787d9cafa8c1420e011c7ec9ec1f2181813fc",
+    "day1_consultation05_doctor": "3c834cbb2a4105cae1e091b487e04d4ae2b81596e9a6e40b608f8106617d316c",
+    "day1_consultation05_patient": "0c015d45b7dcda76580e765301064ccefabe8ea7d6850bded2d2283b76b51cbe",
+    "day1_consultation06_doctor": "73203b4bce1ccd96b57632186933a3f81baa3d2e7fea46da25f297c01364c7d7",
+    "day1_consultation06_patient": "59c6411e37bd4b2366293ef9881c037af7138d4e58d34ab060114a3187e0ab08",
+    "day1_consultation07_doctor": "3f13e35fbee17813544ad8b4ce64964aae59f5ed9192c3205f73d279a2e1275c",
+    "day1_consultation08_doctor": "3219c5cc64fd07d504bcf46b4222cc1679ccd9e77c1d00730ecdeb88046326e7",
+    "day1_consultation09_doctor": "04944863f322f2e79d0e21dcd0fc1a4171887d25642b9b12867655c7b0e46bdc",
+    "day1_consultation09_patient": "9cd4163e76fde7ccaac92dd22c4f0329a3eaf30fd6a3df90a34965fa928eb4c5",
+    "day1_consultation10_doctor": "ee0368edd55f5fc942afaa97c1cb4d307647b4fb9bad5b0eafd398b27d5aeb5e",
+    "day1_consultation11_doctor": "1648125838287f9d66991f04e024bb25dac908b07f1484ef8ff74c2f6e6135fd",
+    "day1_consultation12_doctor": "2c192546f9c080561fcfd141c3b789507cfb5b07ad674e49ec1f3cc74db430fc",
+    "day1_consultation13_doctor": "2c20c6877160b4e533b1e22dc52ef4856c489739f68952b271322b869ac8fc43",
+    "day1_consultation14_doctor": "3e95da87af99e314aba04358ceed16d91ce9e27d23c0d576ef89d8bf07d9d741",
+    "day1_consultation15_doctor": "ff8052940a1f4b9a56bebed6ba00441478f77cfdff5f80804f1df4d1f444e794",
+    "day2_consultation04_doctor": "fa10303b37a97184e29b987f70d514dc00a1824c0ae85b26d08fc80eb0103929",
+    "day2_consultation04_patient": "1b34136477b0fa6cc1bd4eb6336ef26a3adae95e89afc428d8d40576f8356ba7",
+    "day2_consultation05_doctor": "b242f019bb0849687ad6f8f7dbfe8f2483c6e5dcc0b4b58d9783723e28558c7f",
+    "day2_consultation05_patient": "9d9d829fe9a82c5f4a542bf18d653435951b44be67b9b3afe88d663b04245266",
+    "day2_consultation06_doctor": "6c6dffbbf4b815312e17b089ebbe570ad32747fb8701cb7de152d72254d34fa5",
+    "day2_consultation07_patient": "935e7ca8cd58b2b2d5fc0759bd4e7512a9e0c09e72cbc1f6093c0d65fa3fd08a",
+    "day2_consultation10_doctor": "5634491b2038c9f700a2bda566604856dc38f577d2b3e8b27726a0f764079c04",
+    "day2_consultation10_patient": "755c0564dbb7f0527c6aa0aa7550d3dbde01bcf2aa2bcaaaacc26db09f7dce14",
+    "day3_consultation01_doctor": "f1d76e0088006965f7c795558c60e10ddf4a4b36d4127f44f54e8b7305ffaf35",
+    "day3_consultation01_patient": "d85d5eccd5c1b2032e550c5d2f04605a92dc5666442fdb772e3ee7e907c0b5df",
+    "day3_consultation03_doctor": "bd5c6e059fb08e133c7fcfb00af486bc59e5d8883333e3795e74297da457fcb5",
+    "day3_consultation03_patient": "f0dc1621cec01e967d8e098eb7408761faef99b5d1bdd5a2478de707abdb04d0",
+    "day3_consultation04_doctor": "ccc5055fa2195d68de62b4beda20b3940eb5335db5c90e9f8e9ae7edbf63f878",
+    "day3_consultation04_patient": "8a973afa50974aa74b52517e6267d1c59c74803e396a9d4e2b906d439cc36119",
+    "day3_consultation05_doctor": "5c3705832fd1aecc42b8ca965ff454a5b3db1a5e68a7765bf4950c0a48581019",
+    "day3_consultation08_doctor": "4b3e6e55e6bdb666bd474e83d8e31d4c13052218c48bef4040a542d6f2ab33cb",
+    "day3_consultation10_doctor": "a6b76bfe172c675cf6e74d8f548c60ee5218cffb3cbf75afd801ec3032519a56",
+    "day3_consultation10_patient": "e62e882189e5bccacb272dc4513699285757ea2475014455f3bfddf5c9ed9320",
+    "day4_consultation02_doctor": "a88e821730345c165fe55d7ad8900dfc6175c841b3dea7800a4ad1a50ac65b9d",
+    "day4_consultation02_patient": "2b96d4fefd39e3ceaaa981aec8bbc82af2ca09b7afc311d00d84c8014d3b11c7",
+    "day4_consultation03_doctor": "ab16b82a5797c39776413d0253655b791fd048f97d64669c756981fbbc12a310",
+    "day4_consultation03_patient": "4375157295755529e83b4efc9da406e74903eff19b88cd770c659218c640637c",
+    "day4_consultation05_doctor": "18ff95270878fdd7c016ed48084b823b85e23f0781a2a0ff395f4db198ff6d94",
+    "day4_consultation05_patient": "d95df2ad1ffc7ad8bbf435a2785fd8694ac9de0ac637c07641ab9165a0d30d63",
+    "day4_consultation06_doctor": "de66a793551f89b6240a68bc2a5d224c38cf821683c5197f25d711718201ec75",
+    "day4_consultation08_patient": "e93eb32c2e08921101c1f95207381196c44b3794c98564b19cd63855d16c841d",
+    "day4_consultation09_doctor": "d0232f73f2d6e17d124f470ef99cbe1d13f300856d2ad31bbddd771b594599af",
+    "day4_consultation09_patient": "cfbe9beadef4a73d3c2a065d33256f67d020e42744d23ed4f6cbdf68999aa418",
+    "day4_consultation10_doctor": "5ba7924799891042b829e79fde2ec3bdd81ef4c2fcbe479b811269c41608a01b",
+    "day4_consultation10_patient": "2a1c192cef9547bd247c0aeab799c1bf6af3ce05fb3b06b2bbd6ccc9305ff2ed",
+    "day5_consultation01_doctor": "a91469ed0dcc5de451fb369e3cb5674d3839b1b87994f05d2a255f99ad5d2aae",
+    "day5_consultation01_patient": "6ac43091e009c3a36b034a644a102a36f88880478966ef25b405c5c32bf72493",
+    "day5_consultation02_doctor": "9679f24dfe3102cdb11c237e65b368d8cdad4de06043f5c1ff5c6bc087ed35b6",
+    "day5_consultation02_patient": "a2bcb5cfa2f00045190d442580417cc47e80c78f3476424f6db995ae79177862",
+    "day5_consultation04_doctor": "97b654cc86270f98214c43914314b250a9777e9082d71bd0c0aabbffe8cb6246",
+    "day5_consultation04_patient": "338706d00afd436bedc1c617625e47b28cd00c71ed0e989d126b08ea6a4ded51",
+    "day5_consultation07_doctor": "5f75626f10892b9f61ecb37e06b24b0409abc0372f393878ea111f4097fc854d",
+    "day5_consultation10_doctor": "bf7d8ac1d05298aa0e56092c7e61d77a102b238089783256052406ee5d1cc968",
+    "day5_consultation11_doctor": "bbbb0e4c9c40d2a75752034fc168614b919aa6670af60918fe92fc55f9f31908",
+    "day5_consultation12_doctor": "88db5a61f718e257cc97c88e81754760dabbf41ec4af96aeb45a62cb2dcdd72b"
+  },
+  "utterances": [
+    {
+      "clip": "day1_consultation02_doctor_0483232",
+      "file": "day1_consultation02_doctor",
+      "xmin": 483.232293650907,
+      "xmax": 489.386909680797,
+      "wav_sha256": "b70908cde88252f45549da6429a67a8c1d5402159e9d6d947bd91c92f6164582"
+    },
+    {
+      "clip": "day1_consultation02_doctor_0523292",
+      "file": "day1_consultation02_doctor",
+      "xmin": 523.292533524481,
+      "xmax": 529.617049231308,
+      "wav_sha256": "d78216401a654f0f4f954a4c07e9b0ad5a0e0675d70fe837cebc95a95b3bb3c8"
+    },
+    {
+      "clip": "day1_consultation03_doctor_0483415",
+      "file": "day1_consultation03_doctor",
+      "xmin": 483.415735,
+      "xmax": 488.701651742478,
+      "wav_sha256": "ec4d817aa325db3cb07f32ea6f4cf3e36ea9511fa19d5f2808d22e02dfbc15bc"
+    },
+    {
+      "clip": "day1_consultation05_doctor_0532584",
+      "file": "day1_consultation05_doctor",
+      "xmin": 532.58406898313,
+      "xmax": 542.137558,
+      "wav_sha256": "f5090de8720da6993af8100624d8909bf92c39d1501b40f3cad9d31baab365fa"
+    },
+    {
+      "clip": "day1_consultation05_patient_0221307",
+      "file": "day1_consultation05_patient",
+      "xmin": 221.307460299141,
+      "xmax": 225.517972265125,
+      "wav_sha256": "64a279f479a8f4af6974c24ebd618cd29b03e4a5d865506049b74c0d8c27cda6"
+    },
+    {
+      "clip": "day1_consultation05_patient_0316250",
+      "file": "day1_consultation05_patient",
+      "xmin": 316.250276951375,
+      "xmax": 323.111579125274,
+      "wav_sha256": "597132eb78252e3c6127668618984d76ede2b7995dda0545d1a887bf5619e0c3"
+    },
+    {
+      "clip": "day1_consultation06_doctor_0554710",
+      "file": "day1_consultation06_doctor",
+      "xmin": 554.710375911813,
+      "xmax": 561.884145677697,
+      "wav_sha256": "5317a8c98066ccfb66a8232acb0cad4919ed5d235f168ed7fcec48db40f0adee"
+    },
+    {
+      "clip": "day1_consultation06_doctor_0612644",
+      "file": "day1_consultation06_doctor",
+      "xmin": 612.644296935539,
+      "xmax": 620.456102690009,
+      "wav_sha256": "d8d9a8da4457123c9e0513313762dce477b09235f525b0da4f08fdc1d768ada8"
+    },
+    {
+      "clip": "day1_consultation06_patient_0311347",
+      "file": "day1_consultation06_patient",
+      "xmin": 311.347112484929,
+      "xmax": 314.407385259736,
+      "wav_sha256": "79cfba3060b26b0fe0359179bb860b489b0c1d64636729de86915f31bc6113ba"
+    },
+    {
+      "clip": "day1_consultation07_doctor_0777172",
+      "file": "day1_consultation07_doctor",
+      "xmin": 777.17250678955,
+      "xmax": 792.696896562512,
+      "wav_sha256": "99bb92c88a4cf5af544e927b2e147b50f6d999dc4e5394467cafcd1019ad663f"
+    },
+    {
+      "clip": "day1_consultation08_doctor_0437008",
+      "file": "day1_consultation08_doctor",
+      "xmin": 437.008040420342,
+      "xmax": 442.504377,
+      "wav_sha256": "b5bf7701348415b46c09aa80acafc9d0fb5f50aa367b0a29fed2b8a6b29ffc91"
+    },
+    {
+      "clip": "day1_consultation09_doctor_0321827",
+      "file": "day1_consultation09_doctor",
+      "xmin": 321.827274246963,
+      "xmax": 324.18817758878,
+      "wav_sha256": "972339e428e65c621a4430b26949dfff7b79db4e87b870686aa0cc54d3f977cf"
+    },
+    {
+      "clip": "day1_consultation09_doctor_0444678",
+      "file": "day1_consultation09_doctor",
+      "xmin": 444.678688708987,
+      "xmax": 454.458942290905,
+      "wav_sha256": "ffeeaf90a65286ec3f33d87623a1f1591e54b9cd77b2fbbb1d8c88c61c34b980"
+    },
+    {
+      "clip": "day1_consultation09_patient_0318253",
+      "file": "day1_consultation09_patient",
+      "xmin": 318.253767253934,
+      "xmax": 321.453747836456,
+      "wav_sha256": "14022496b84c18bcf254a700f131cad2d340f5e25f2da5ecec6ccda9991df074"
+    },
+    {
+      "clip": "day1_consultation10_doctor_0553834",
+      "file": "day1_consultation10_doctor",
+      "xmin": 553.834013364689,
+      "xmax": 559.565116051179,
+      "wav_sha256": "fae1ac9079ecb34691765dacd0cb6d7358a4dee1a8ba630b81e4d34279f83f3d"
+    },
+    {
+      "clip": "day1_consultation11_doctor_0726544",
+      "file": "day1_consultation11_doctor",
+      "xmin": 726.544623816238,
+      "xmax": 736.591685552522,
+      "wav_sha256": "3b80256a49518608210c39b8b054665be7bd7671e3f2bae5b76b68ae1c958e0f"
+    },
+    {
+      "clip": "day1_consultation11_doctor_0776592",
+      "file": "day1_consultation11_doctor",
+      "xmin": 776.592193923172,
+      "xmax": 782.38441627037,
+      "wav_sha256": "aa2f7e6981ff173aac3b2cb4ba82d068fe63fe89d2a230b9a2525e114661570e"
+    },
+    {
+      "clip": "day1_consultation12_doctor_0420383",
+      "file": "day1_consultation12_doctor",
+      "xmin": 420.383799496362,
+      "xmax": 424.803175983857,
+      "wav_sha256": "102afdeaf4ae7d803febe9733dbfa99d016c8f5432722eb3efe1bfd753b8ab60"
+    },
+    {
+      "clip": "day1_consultation13_doctor_0516129",
+      "file": "day1_consultation13_doctor",
+      "xmin": 516.129849881666,
+      "xmax": 529.360342323224,
+      "wav_sha256": "acb0d4e2b2ca985e08891f71dcbef859beed2026ada84aec28629ac186f221ff"
+    },
+    {
+      "clip": "day1_consultation14_doctor_0540833",
+      "file": "day1_consultation14_doctor",
+      "xmin": 540.833349314039,
+      "xmax": 545.717661553909,
+      "wav_sha256": "e35d9dc532df4d54854ce5f4bc1b7263d50670a4d6b01fabba4ac6bf663fea2c"
+    },
+    {
+      "clip": "day1_consultation15_doctor_0260388",
+      "file": "day1_consultation15_doctor",
+      "xmin": 260.388818729343,
+      "xmax": 266.038197534822,
+      "wav_sha256": "fb96cdd5eda50855aa86ea989f350b7fc4d2d031b2351fd8920dc95200061a26"
+    },
+    {
+      "clip": "day2_consultation04_doctor_0207582",
+      "file": "day2_consultation04_doctor",
+      "xmin": 207.582952478468,
+      "xmax": 212.907460574109,
+      "wav_sha256": "843b252a339c7a66349aacaab3980a42f9713cb90d7e32969f44b9e1f8961631"
+    },
+    {
+      "clip": "day2_consultation05_doctor_0354054",
+      "file": "day2_consultation05_doctor",
+      "xmin": 354.054890063134,
+      "xmax": 357.948643047146,
+      "wav_sha256": "ae11db341307d91aee336baa442d7d2f9234f04b28de40b64421dd58229d5caa"
+    },
+    {
+      "clip": "day2_consultation05_patient_0339050",
+      "file": "day2_consultation05_patient",
+      "xmin": 339.050147354887,
+      "xmax": 344.429060006827,
+      "wav_sha256": "b0f7ec235b03950d0d7598a1ad0863b38173ce27a7686e9e37b6305d70364e6d"
+    },
+    {
+      "clip": "day2_consultation06_doctor_0136062",
+      "file": "day2_consultation06_doctor",
+      "xmin": 136.062215591427,
+      "xmax": 138.793329058149,
+      "wav_sha256": "b564a66e44256ea81a29a4cb9872000846247f18579b71ff5492107cbad433ed"
+    },
+    {
+      "clip": "day2_consultation07_patient_0377936",
+      "file": "day2_consultation07_patient",
+      "xmin": 377.936938314894,
+      "xmax": 381.110979472634,
+      "wav_sha256": "44242656d4d5795c8b520fd61dda7ddecfe21c963f79b6cd7158d011b09bfc77"
+    },
+    {
+      "clip": "day2_consultation10_doctor_0452572",
+      "file": "day2_consultation10_doctor",
+      "xmin": 452.572852863152,
+      "xmax": 460.811711,
+      "wav_sha256": "8da43d1995d8fef317f9830c31fb4630cd7de179985e372340bf09810907d1c9"
+    },
+    {
+      "clip": "day2_consultation10_patient_0196653",
+      "file": "day2_consultation10_patient",
+      "xmin": 196.653456457461,
+      "xmax": 205.192966467839,
+      "wav_sha256": "675a691813dfdeb24a2d829bb92a8498d6806db27395cfbcf52544f00e00cd06"
+    },
+    {
+      "clip": "day2_consultation10_patient_0325703",
+      "file": "day2_consultation10_patient",
+      "xmin": 325.703018851212,
+      "xmax": 332.80369107335,
+      "wav_sha256": "016ecf4a99fad13c78b2de7a2639cf92d1d42e3b527a3a75abad66e13546761e"
+    },
+    {
+      "clip": "day3_consultation01_doctor_0293760",
+      "file": "day3_consultation01_doctor",
+      "xmin": 293.760292852738,
+      "xmax": 300.292242883508,
+      "wav_sha256": "7af88d6b633d093fa8374653a51a1d86b058b396c4112c97780ba349b36e5070"
+    },
+    {
+      "clip": "day3_consultation03_doctor_0501763",
+      "file": "day3_consultation03_doctor",
+      "xmin": 501.763619094879,
+      "xmax": 508.0779046361,
+      "wav_sha256": "2954b7254ec7e0950742d200d09adf0c231c200b275a68977818ee48cb71bce3"
+    },
+    {
+      "clip": "day3_consultation04_doctor_0112957",
+      "file": "day3_consultation04_doctor",
+      "xmin": 112.957318309311,
+      "xmax": 116.278266175446,
+      "wav_sha256": "8ab1345b67f4c2ea41383030a955104c531d2164e62ca0ffb99593a8a80ad2ed"
+    },
+    {
+      "clip": "day3_consultation04_patient_0109941",
+      "file": "day3_consultation04_patient",
+      "xmin": 109.941683819469,
+      "xmax": 112.427185099654,
+      "wav_sha256": "33ba6bfa6c9e35173428f71d9d7034b1f4e7f90691db060253bfa237f1c6d139"
+    },
+    {
+      "clip": "day3_consultation04_patient_0157600",
+      "file": "day3_consultation04_patient",
+      "xmin": 157.600944826548,
+      "xmax": 162.65889954315,
+      "wav_sha256": "62aa0a66a06604e8655f39fb680f3f4cde56caf33c457ad5d5730bb66a730686"
+    },
+    {
+      "clip": "day3_consultation05_doctor_0305570",
+      "file": "day3_consultation05_doctor",
+      "xmin": 305.570823,
+      "xmax": 320.995154013423,
+      "wav_sha256": "0e4e030c7ab4fa05998fb321a9e72094613208f0b88f21e77f783371c5f2e82e"
+    },
+    {
+      "clip": "day3_consultation08_doctor_0143108",
+      "file": "day3_consultation08_doctor",
+      "xmin": 143.108131098504,
+      "xmax": 146.094510618582,
+      "wav_sha256": "d0235e04436a34f39f14401c570f0bfba50f3c5cb50dc67e5bfe95d6882cce8e"
+    },
+    {
+      "clip": "day4_consultation03_doctor_0318607",
+      "file": "day4_consultation03_doctor",
+      "xmin": 318.607623714452,
+      "xmax": 323.430626687842,
+      "wav_sha256": "b4dfdaeaeb348c8847da75a243fbb67e01d56e0be8b5a92419c069e0bead41e6"
+    },
+    {
+      "clip": "day4_consultation03_patient_0182312",
+      "file": "day4_consultation03_patient",
+      "xmin": 182.312077414803,
+      "xmax": 186.329200914793,
+      "wav_sha256": "36fee12e18eb723e6971b1d329c0ec4d7f9cb1aa3f5a40291aabd9abf147f0e5"
+    },
+    {
+      "clip": "day4_consultation06_doctor_0165619",
+      "file": "day4_consultation06_doctor",
+      "xmin": 165.619159577563,
+      "xmax": 172.099848675378,
+      "wav_sha256": "7116fc44dc512729391dfff4fc146f024ba93f36f917ad7af9094b882cf69368"
+    },
+    {
+      "clip": "day4_consultation06_doctor_0421457",
+      "file": "day4_consultation06_doctor",
+      "xmin": 421.457780679796,
+      "xmax": 426.329839171357,
+      "wav_sha256": "ed434a4efab81e91e061d65c875411745d7c70eb3cbe00239f6e2ed32da5112c"
+    },
+    {
+      "clip": "day4_consultation08_patient_0488066",
+      "file": "day4_consultation08_patient",
+      "xmin": 488.066030271116,
+      "xmax": 491.682560630883,
+      "wav_sha256": "ed3731361a372322d15c57044112d1eaa3b4b6f81453576a1b599dbbcb14026f"
+    },
+    {
+      "clip": "day4_consultation09_doctor_0152495",
+      "file": "day4_consultation09_doctor",
+      "xmin": 152.495204517942,
+      "xmax": 159.727232681745,
+      "wav_sha256": "b291cfaa6ad4bec8b592908f3c7353df4c14f59da742c9b95cd7702c2e64c29c"
+    },
+    {
+      "clip": "day4_consultation09_doctor_0177091",
+      "file": "day4_consultation09_doctor",
+      "xmin": 177.091028742494,
+      "xmax": 183.023388894721,
+      "wav_sha256": "d03b6c3a05e3af63a1cd127418ecd33835dc357b0aef08bffea2ca0e95c906f4"
+    },
+    {
+      "clip": "day4_consultation09_doctor_0289099",
+      "file": "day4_consultation09_doctor",
+      "xmin": 289.099112406442,
+      "xmax": 302.069108385628,
+      "wav_sha256": "791aa1bed6d71d920aee80640386d162c6d0a4046f075b03fdc9026088378d02"
+    },
+    {
+      "clip": "day4_consultation09_doctor_0523508",
+      "file": "day4_consultation09_doctor",
+      "xmin": 523.508391352103,
+      "xmax": 529.025178489437,
+      "wav_sha256": "3fc26f5879a85f663e9c9398cd035f473b32a9b0673000a8f63025407eb94298"
+    },
+    {
+      "clip": "day4_consultation09_patient_0136820",
+      "file": "day4_consultation09_patient",
+      "xmin": 136.820724332107,
+      "xmax": 143.054248393489,
+      "wav_sha256": "0b4e0bbe583ce87bc6c50193a4a8ee7b4b3f00e2692dba765cce5b9455498147"
+    },
+    {
+      "clip": "day4_consultation09_patient_0144386",
+      "file": "day4_consultation09_patient",
+      "xmin": 144.386014709577,
+      "xmax": 148.86574708554,
+      "wav_sha256": "0ee7d44d0ee2c232641c92a3087a22a74262dd4c7039958bc475a70fe1093501"
+    },
+    {
+      "clip": "day4_consultation10_patient_0512488",
+      "file": "day4_consultation10_patient",
+      "xmin": 512.488911954377,
+      "xmax": 517.89097034357,
+      "wav_sha256": "12a60447721585f47eac5b937a0a84f2f7a113332178db231667c18ab8cc584b"
+    },
+    {
+      "clip": "day5_consultation01_doctor_0305609",
+      "file": "day5_consultation01_doctor",
+      "xmin": 305.609968390655,
+      "xmax": 313.035908708181,
+      "wav_sha256": "6a32ac3c5cbbeea01be34391c18d473d8e553454b1a9ec3fde4819b1aaa35d91"
+    },
+    {
+      "clip": "day5_consultation01_doctor_0325762",
+      "file": "day5_consultation01_doctor",
+      "xmin": 325.762670861581,
+      "xmax": 334.168052312395,
+      "wav_sha256": "d231ac11874ed4b1bf17a71ac8f9b124acf1c7e384b924d17e9ed8daa415d907"
+    },
+    {
+      "clip": "day5_consultation01_doctor_0359532",
+      "file": "day5_consultation01_doctor",
+      "xmin": 359.53216528861,
+      "xmax": 369.111474432241,
+      "wav_sha256": "3d857f56e86967dfe4d14cb0d15a2a21917af8a1ab48dba24a574de0a6efe014"
+    },
+    {
+      "clip": "day5_consultation01_patient_0296908",
+      "file": "day5_consultation01_patient",
+      "xmin": 296.90868160811,
+      "xmax": 301.028966853849,
+      "wav_sha256": "6ff4a8d1c0b5d5b6f64578a39d09260d9018fa6896b66791ebb2e97b05438cc9"
+    },
+    {
+      "clip": "day5_consultation02_doctor_0230041",
+      "file": "day5_consultation02_doctor",
+      "xmin": 230.041139363925,
+      "xmax": 232.749515447193,
+      "wav_sha256": "8362ea46c2c3c8978ab42288d8c81645c6185a4d9d811dc0a54e0f9247c88747"
+    },
+    {
+      "clip": "day5_consultation04_doctor_0508723",
+      "file": "day5_consultation04_doctor",
+      "xmin": 508.723983840665,
+      "xmax": 512.530008131717,
+      "wav_sha256": "40a2abaf6db44a5469fcf8a4a98456e479c3685661edf51fc59399ed0d014e54"
+    },
+    {
+      "clip": "day5_consultation07_doctor_0240814",
+      "file": "day5_consultation07_doctor",
+      "xmin": 240.814712620002,
+      "xmax": 244.202848574454,
+      "wav_sha256": "fcbe0a33281bbe4211e18b40d8fd71dcba29987c936204107bd0d09993f5b041"
+    },
+    {
+      "clip": "day5_consultation07_doctor_0437955",
+      "file": "day5_consultation07_doctor",
+      "xmin": 437.955582207236,
+      "xmax": 451.291120738269,
+      "wav_sha256": "e48d84adea454cb1aac13e81590fa0711d3a6b23f855985708350783ff354b89"
+    },
+    {
+      "clip": "day5_consultation10_doctor_0458441",
+      "file": "day5_consultation10_doctor",
+      "xmin": 458.441911774165,
+      "xmax": 470.434341784147,
+      "wav_sha256": "09cf18e39867a11483346f794a5c1ed86c3f77e35eca0652dba9cf6a7853ccef"
+    },
+    {
+      "clip": "day5_consultation11_doctor_0554974",
+      "file": "day5_consultation11_doctor",
+      "xmin": 554.974632220914,
+      "xmax": 567.329661849316,
+      "wav_sha256": "a9c8898844b2a61a2add3129ff6d10aa618b74366b75c5b41687b2e194e60069"
+    },
+    {
+      "clip": "day5_consultation12_doctor_0265174",
+      "file": "day5_consultation12_doctor",
+      "xmin": 265.174983221924,
+      "xmax": 272.413114,
+      "wav_sha256": "c82b383ee79e4c4505d0d3fe07cbad91d81150b811ad9d459a70db2d011ee54a"
+    },
+    {
+      "clip": "day5_consultation12_doctor_0272413",
+      "file": "day5_consultation12_doctor",
+      "xmin": 272.413114,
+      "xmax": 278.039775577814,
+      "wav_sha256": "3c5a79b8cf8b932ccb51272f0833a514dca073b16d296840701c9e065887ac0d"
+    }
+  ],
+  "gaps": [
+    {
+      "clip": "day1_consultation02_doctor_0340067",
+      "file": "day1_consultation02_doctor",
+      "interval_xmin": 339.767539294907,
+      "interval_xmax": 345.703204518644,
+      "category": "room_tone",
+      "wav_sha256": "ba57a8846f165648faa4b7e37b49e561586c730e4ede2e86c012626fe9443c0d"
+    },
+    {
+      "clip": "day1_consultation04_doctor_0376690",
+      "file": "day1_consultation04_doctor",
+      "interval_xmin": 376.390397160994,
+      "interval_xmax": 387.179851350224,
+      "category": "other_party",
+      "wav_sha256": "0a5f866c4df6741e75b2cba690418d51e6ef25fceedc1398863140259d083c15"
+    },
+    {
+      "clip": "day1_consultation06_doctor_0266824",
+      "file": "day1_consultation06_doctor",
+      "interval_xmin": 266.524143842479,
+      "interval_xmax": 274.50750637104,
+      "category": "other_party",
+      "wav_sha256": "e895bd061b7288311a01494e0d50e1b3a78d23d04a12225b73b73ab8b5de6470"
+    },
+    {
+      "clip": "day1_consultation06_doctor_0657289",
+      "file": "day1_consultation06_doctor",
+      "interval_xmin": 656.989580575611,
+      "interval_xmax": 662.519977324263,
+      "category": "room_tone",
+      "wav_sha256": "924869a771880faab41f864f3454b66bd558fff35d8e908f9c727888086e22aa"
+    },
+    {
+      "clip": "day2_consultation04_doctor_0258353",
+      "file": "day2_consultation04_doctor",
+      "interval_xmin": 258.053201459583,
+      "interval_xmax": 262.457178735477,
+      "category": "room_tone",
+      "wav_sha256": "f2de4525d7f108a79763285f2a84e8243a3b7745ae9c1e0c581ddf70ad1170a0"
+    },
+    {
+      "clip": "day3_consultation01_doctor_0000300",
+      "file": "day3_consultation01_doctor",
+      "interval_xmin": 0.0,
+      "interval_xmax": 4.43264591652915,
+      "category": "room_tone",
+      "wav_sha256": "6d62e90455139713e4148b173ed85837cb902b7a450bb9b48654a7e555031437"
+    },
+    {
+      "clip": "day3_consultation03_doctor_0628135",
+      "file": "day3_consultation03_doctor",
+      "interval_xmin": 627.835044016585,
+      "interval_xmax": 634.12102848207,
+      "category": "other_party",
+      "wav_sha256": "9715739985615d0ee350791d590fd27ce3b607f6844c506017e2dbfae8b3b2cd"
+    },
+    {
+      "clip": "day3_consultation10_doctor_0128280",
+      "file": "day3_consultation10_doctor",
+      "interval_xmin": 127.980214075025,
+      "interval_xmax": 131.662660632565,
+      "category": "other_party",
+      "wav_sha256": "ff57af65ef782d00ae7c5c9d6cb3373257c57a4fb2a57394496923ee20e9ba38"
+    },
+    {
+      "clip": "day4_consultation02_doctor_0071323",
+      "file": "day4_consultation02_doctor",
+      "interval_xmin": 71.0237652288991,
+      "interval_xmax": 78.491530302344,
+      "category": "other_party",
+      "wav_sha256": "4ca20401cb3e59a98fa5c70089ad493db575ce1b4dd72ec743a97d1c084736a0"
+    },
+    {
+      "clip": "day4_consultation03_doctor_0212591",
+      "file": "day4_consultation03_doctor",
+      "interval_xmin": 212.291708768285,
+      "interval_xmax": 216.329394162415,
+      "category": "other_party",
+      "wav_sha256": "11c810749f928ee75953e22964e06741df7b94e4345c72b0bf70084699a1b71d"
+    },
+    {
+      "clip": "day4_consultation03_doctor_0254849",
+      "file": "day4_consultation03_doctor",
+      "interval_xmin": 254.549650918666,
+      "interval_xmax": 263.822436705547,
+      "category": "room_tone",
+      "wav_sha256": "51f6348a8d1451822a63cf113a84cad0c520b482d14f8f917f20d2640aec31ff"
+    },
+    {
+      "clip": "day4_consultation05_doctor_0439985",
+      "file": "day4_consultation05_doctor",
+      "interval_xmin": 439.685221855635,
+      "interval_xmax": 444.529327059628,
+      "category": "room_tone",
+      "wav_sha256": "2347e7a02cbef9850656dfde63ece3f0e6a9a2544d0476aa4bc51ea1fb3af509"
+    },
+    {
+      "clip": "day4_consultation10_doctor_0378503",
+      "file": "day4_consultation10_doctor",
+      "interval_xmin": 378.203794232164,
+      "interval_xmax": 382.328628396406,
+      "category": "room_tone",
+      "wav_sha256": "a669dff744734de842c4cc5698b7f5d587f42dbd614cfbc68a5fd5283c9ffbce"
+    },
+    {
+      "clip": "day4_consultation10_doctor_0550375",
+      "file": "day4_consultation10_doctor",
+      "interval_xmin": 550.075334942616,
+      "interval_xmax": 554.873923862247,
+      "category": "room_tone",
+      "wav_sha256": "0c8970fbc749bc30f31b9646480cad536477ef106d43b69ae10253a4b8b91eb1"
+    },
+    {
+      "clip": "day5_consultation02_doctor_0222065",
+      "file": "day5_consultation02_doctor",
+      "interval_xmin": 221.765285460033,
+      "interval_xmax": 226.696313859011,
+      "category": "room_tone",
+      "wav_sha256": "607e5a504d94531ce2baca1302ad83fa322d2f2203b816ae95a9299503331d03"
+    },
+    {
+      "clip": "day5_consultation04_doctor_0370647",
+      "file": "day5_consultation04_doctor",
+      "interval_xmin": 370.347833979419,
+      "interval_xmax": 374.281808432334,
+      "category": "room_tone",
+      "wav_sha256": "dd5958caa00319c88bcd8be951b76632be933986c39bfe2ed3a8b404978989bf"
+    }
+  ]
+}

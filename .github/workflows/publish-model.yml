@@ -1,0 +1,89 @@
+name: publish-model
+
+# Publishes each catalog entry as an immutable release. A push to main that adds or changes
+# catalog/<id>.json publishes that entry; workflow_dispatch publishes one entry by id. A tag that
+# is already published is checked against its pin and skipped, so reruns are safe.
+
+on:
+  push:
+    branches: [main]
+    paths: ['catalog/**']
+  workflow_dispatch:
+    inputs:
+      id:
+        description: 'Catalog id to publish (the file name under catalog/ without .json)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-model
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      ids: ${{ steps.ids.outputs.ids }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: ids
+        name: Choose the entries to publish
+        env:
+          EVENT: ${{ github.event_name }}
+          INPUT_ID: ${{ inputs.id }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" = workflow_dispatch ]; then
+            [[ "$INPUT_ID" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || { echo "::error::bad id: $INPUT_ID"; exit 1; }
+            [ -f "catalog/$INPUT_ID.json" ] || { echo "::error::no catalog/$INPUT_ID.json"; exit 1; }
+            files="catalog/$INPUT_ID.json"
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = 0000000000000000000000000000000000000000 ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            files=$(git ls-files 'catalog/*.json')
+          else
+            files=$(git diff --name-only --diff-filter=AM "$BEFORE" "$AFTER" -- 'catalog/*.json')
+          fi
+          ids=$(printf '%s\n' "$files" | sed -n 's#^catalog/\([^/]*\)\.json$#\1#p' | jq -R . | jq -cs .)
+          echo "Entries: $ids"
+          echo "ids=$ids" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: plan
+    if: needs.plan.outputs.ids != '[]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      contents: write
+      attestations: read
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        id: ${{ fromJSON(needs.plan.outputs.ids) }}
+    env:
+      ID: ${{ matrix.id }}
+      REPO: ${{ github.repository }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - name: Install flac for an evaluation set
+        run: |
+          set -euo pipefail
+          if [ "$(jq -r .kind "catalog/$ID.json")" = eval ]; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq flac
+            flac --version
+          fi
+      - name: Download or build, then check against the pins
+        run: bash scripts/stage-release.sh "$ID" "$RUNNER_TEMP/stage"
+      - name: Publish the release and verify it
+        run: bash scripts/publish-release.sh "$ID" "$RUNNER_TEMP/stage"
